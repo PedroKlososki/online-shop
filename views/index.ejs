@@ -1,0 +1,15 @@
+<%- include("./partials/head") %>
+
+<main class="main">
+    <div class="container">
+        <% if (locals.data) { %>
+            <% data.forEach((item) => { %>
+                <div class="product">
+                    <h3><%=item.product_name%></h3>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</main>
+
+<%- include("./partials/footer") %>

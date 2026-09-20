@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.header {
+    margin: 0;
+    padding: 0;
+    height: 10%;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.search {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search input {
+    height: 50%;
+    width: 100%;
+    border: 1px solid black;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.search img {
+    background: transparent !important;
+}
+
+.user {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    height: 70%;
+    background-color: red;
+}
+
+.main > div {
+
+    padding: 20px;
+    border: 1px solid black;
+    background-color: blue;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
+    
+}
+
+.main > div div {
+    border: 1px solid black;
+    background-color: green;
+    min-height: 200px;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <title>Gumin Shop</title>
+</head>
+<body>
+    <header class="header px-5">
+        <div class="logo">
+            <img />
+            <h1>Gumin</h1>
+        </div>
+        <div class="search">
+            <input class="search-input" id="search-input" name="search" placeholder="Purple shoes"/>
+            <button>
+                <img src="https://svgsilh.com/svg/1093183.svg" height="40">
+            </button>
+        </div>
+        <div class="user">
+            <% if (!locals.user || locals.user.logged === "false") {%>
+            <h3>
+                <%=user.first_name%> <%=user.last_name%>
+            </h3>
+            <% } else { %>
+                <div class="btnin">
+                    <button> Log in </button>
+                    <button> Sign in</button>
+                </div>
+            <% } %>
+        </div>
+
+    </header>
