@@ -9,26 +9,32 @@
     <title>Gumin Shop</title>
 </head>
 <body>
-    <header class="header px-5">
-        <div class="logo">
+    <header class="header text-bg-primary row px-5">
+        <div class="logo col-lg-1 d-flex align-items-center justify-content-center">
             <img />
             <h1>Gumin</h1>
         </div>
-        <div class="search">
-            <input class="search-input" id="search-input" name="search" placeholder="Purple shoes"/>
-            <button>
-                <img src="https://svgsilh.com/svg/1093183.svg" height="40">
-            </button>
+        <div class="search col-lg-10 d-flex align-items-center justify-content-center mx-auto">
+            <div class="d-flex flex-row search-class">
+                <input class="search-input w-100" id="search-input" name="search" placeholder="Purple shoes"/>
+                <button>
+                    <img src="https://svgsilh.com/svg/1093183.svg" height="41">
+                </button>
+            </div>
         </div>
-        <div class="user">
+        <div class="user col-lg-1 d-flex align-items-center justify-content-center">
             <% if (!locals.user || locals.user.logged === "false") {%>
             <h3>
                 <%=user.first_name%> <%=user.last_name%>
             </h3>
             <% } else { %>
-                <div class="btnin">
-                    <button> Log in </button>
-                    <button> Sign in</button>
+                <div class="btnin row">
+                    <form action="/login" method="get">
+                        <button type="submit" class="col-5 lead w-100"> Log in </button>
+                    </form>
+                    <form action="/signin" method="get">
+                        <button class="col-5 lead w-100"> Sign in</button>
+                    </form>
                 </div>
             <% } %>
         </div>

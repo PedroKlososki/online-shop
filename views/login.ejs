@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <title>Gumin Shop</title>
+</head>
+
+<body>
+<main class="mainLogin h-100 py-5 d-flex justify-content-center">
+    <div class="w-50">
+        <div class="container container-items py-5 w-75 rounded border-0">
+            <div class="row px-auto gap-2 align-items-center justify-content-center text-white fs-4">
+                <% if (locals.method == "login") { %>
+                    <h2>Login in</h2>
+                <form action="/login" method="post">
+                    <div>
+                        <label for="firstName" class="form-label">First Name: </label>
+                        <input type="text" class="fName form-control" id="fName" placeholder="Jorge" name="fName"/>
+                    </div>
+                    <div>
+                        <label for="LastName" class="form-label">Last Name: </label>
+                        <input type="text" class="lName form-control" id="lName" placeholder="Robert" name="lName"/>
+                    </div>
+                    <div>
+                        <label for="email" class="form-label">Email: </label>
+                        <input type="email" class="email form-control" id="email" placeholder="Jorge@gmail.com" name="email"/>
+                    </div>
+                    <div>
+                        <label for="password" class="form-label">Password: </label>
+                        <input type="password" class="password form-control" id="password" name="password" aria-describedby="passwordHelpBlock"/>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-3 border-black fs-4">Sign in</button>
+                </form>
+                <% } else { %>
+                    <h2>Sign in</h2>
+                <form action="/signin" method="post">
+                    <div>
+                        <label for="email" class="form-label">Email: </label>
+                        <input type="email" class="email form-control" id="email" placeholder="Jorge@gmail.com" name="email"/>
+                    </div>
+                    <div>
+                        <label for="password" class="form-label">Password: </label>
+                        <input type="password" class="password form-control" id="password" name="password" aria-describedby="passwordHelpBlock"/>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-3 border-black fs-4">Sign in</button>
+                </form>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include("./partials/footer") %>

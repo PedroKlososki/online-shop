@@ -42,14 +42,14 @@ db.connect();
 
 app.get("/", async (req, res) => {
     const page = parseInt(req.query.page) || 1;
-    const limit = 20;
+    const limit = 18;
     const range = ( page - 1 ) * limit;
 
     if (!req.session.random) {
         req.session.random = Math.random().toString(36).substring(2, 8);
     }
 
-    if (page == 1 && req.query.refresh === "true"){
+    if (page == 1 && req.session.random){
         req.session.random = Math.random().toString(36).substring(2, 8);
     }
 
@@ -60,11 +60,21 @@ app.get("/", async (req, res) => {
             [req.session.random, limit, range]
         );
 
+        for (const item of products.rows){
+            const image = await db.query("SELECT img FROM product_images WHERE id_product = $1", [item.id_product]);
+            const imageBase64 = image.rows[0].img.toString('base64');
+            const url = `data:image/jpeg;base64,${imageBase64}`;
+            item.img = url;
+        }
+
         const productsLength = await db.query("SELECT COUNT(*) FROM products");
+        
 
         res.render("index.ejs", {
             data: products.rows,
             length: productsLength,
+            pages: Math.ceil(productsLength.rows[0].count/limit),
+            currentPage: page,
             user: req.user || {
                 logged: false
             }
@@ -72,7 +82,15 @@ app.get("/", async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-})
+});
+
+app.get("/login", (req, res) => {
+    res.render("login.ejs", { method: "login"});
+});
+
+app.get("/signin", (req, res) => {
+    res.render("login.ejs", { method: "signin"});
+});
 
 // login verification
 passport.use( new Strategy(async function verify(username, password, cb) {

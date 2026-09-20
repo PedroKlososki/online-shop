@@ -1,13 +1,58 @@
 <%- include("./partials/head") %>
 
-<main class="main">
-    <div class="container">
+<main class="main h-100 py-5">
+    <div class="container container-items py-5">
+        <div class="row px-auto gap-2 align-items-center justify-content-center">
         <% if (locals.data) { %>
             <% data.forEach((item) => { %>
-                <div class="product">
-                    <h3><%=item.product_name%></h3>
+                <div class="product col-lg-3 col-sm-6 py-3">
+                    <div class="field-img">
+                        <img src="<%=item.img%>"/>
+                    </div>
+                    <div class="field-text">
+                        <div class="item-text p-2">
+                            <h3><%=item.product_name%></h3>
+                            <figcaption>
+                                <p><%=item.description%></p>
+                            </figcaption>
+                        </div>
+                        <div class="quatity-info d-flex gap-5 flex-row align-items-center">
+                            <h3 class="price">$<%=item.price%></h3>
+                            <% if (item.stock <= 0) { %>
+                                <h5 style="color: red"><strong>Out of stock</strong></h5>
+                            <% } else { %>
+                                <h5>Stock: <%=item.stock%></h5>
+                            <% } %>
+                        </div>
+                        <div class="buttonItems d-flex flex-row align-items-center justify-content-center">
+                            <button class="btn fs-3 <%= ( item.stock <= 0) ? "btn-danger disabled" : "btn-success"%>">Buy</button>
+                        </div>
+                    </div>
                 </div>
             <% }); %>
+        <% } %>
+        </div>
+        <% if (locals.pages == 1) { %>
+            <div class="d-flex w-100 justify-content-center align-items-center mt-5 text-white">
+                <h4>Only one page of results</h4>
+            </div>
+        <% } else if (locals.pages >= pages){ %>
+            <div  class="d-flex w-100 justify-content-center align-items-center mt-5 text-white">
+                <a type="button" href="/?page=<%=currentPage - 1%>">Previous</a>
+                <h4>Page: <%=currentPage%></h4>
+            </div>
+        <% } else { %>
+        <div>
+            <% if (locals.currentPage == 1) { %>
+            <a type="button" href="/?page=<%=currentPage - 1%>">Previous</a>
+            <h4>Page: <%=currentPage%></h4>
+            <a type="button" href="/?page=<%=currentPage + 1%>">Next</a>
+            <%} else { %>
+            <a type="button" href="/?page=<%=currentPage - 1%>">Previous</a>
+            <h4>Page: <%=currentPage%></h4>
+            <a type="button" href="/?page=<%=currentPage + 1%>">Next</a>
+            <%} %>
+        </div>
         <% } %>
     </div>
 </main>
